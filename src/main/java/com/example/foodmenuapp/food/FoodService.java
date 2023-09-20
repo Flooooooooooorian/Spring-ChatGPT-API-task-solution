@@ -41,9 +41,10 @@ public class FoodService {
         return webClient.post()
                 .bodyValue(new ChatGPTRequest("categories: [vegan, vegetarisch, Hausmannskost, Asiatisch, Nudel, Fisch, Spanisch, Deutsch, Mediterran]; output: best fitting category as string; outputformat: ${category}; input: " + name))
                 .retrieve()
-                .bodyToMono(ChatGPTResponse.class)
-                .map(ChatGPTResponse::text)
-                .block();
+                .toEntity(ChatGPTResponse.class)
+                .block()
+                .getBody()
+                .text();
     }
 
     public Food updateFood(Food food) {

@@ -8,6 +8,6 @@ record ChatGPTRequest(
         List<ChatGPTMessage> messages
 ) {
     ChatGPTRequest(String message) {
-        this("gpt-3.5-turbo", Collections.singletonList(new ChatGPTMessage("user", message)));
+        this("gpt-3.5-turbo", List.of(new ChatGPTMessage("user", message)));
     }
 }
