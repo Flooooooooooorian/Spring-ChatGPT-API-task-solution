@@ -39,7 +39,7 @@ public class FoodService {
 
     private String calculateCategory(String name) {
         return webClient.post()
-                .bodyValue(new ChatGPTRequest("categories: [vegan, vegetarisch, Hausmannskost, usw...]; output: best fitting category as string; outputformat json: {\"category\": \"chosen category\"}; input:  " + name))
+                .bodyValue(new ChatGPTRequest("categories: [vegan, vegetarisch, Hausmannskost, Asiatisch, Nudel, Fisch, Spanisch, Deutsch, Mediterran]; output: best fitting category as string; outputformat: ${category}; input: " + name))
                 .retrieve()
                 .bodyToMono(ChatGPTResponse.class)
                 .map(ChatGPTResponse::text)
